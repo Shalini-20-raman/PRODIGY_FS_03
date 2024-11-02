@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Stationery Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Office Stationery Store</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/cart">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        {% for product in products %}
+        <div class="product">
+            <img src="{{ url_for('static', filename='images/' + product['image']) }}" alt="{{ product['name'] }}">
+            <h3>{{ product['name'] }}</h3>
+            <p>{{ product['description'] }}</p>
+            <p><strong>${{ product['price'] }}</strong></p>
+            <a href="/add_to_cart/{{ product['id'] }}" class="add-to-cart">Add to Cart</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
